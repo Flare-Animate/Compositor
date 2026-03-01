@@ -1,8 +1,14 @@
 import type { NextConfig } from "next";
 
+const isGithubActions = process.env.GITHUB_ACTIONS === "true";
+
 const nextConfig: NextConfig = {
   output: "export",
-  /* config options here */
+  basePath: isGithubActions ? "/Compositor" : "",
+  assetPrefix: isGithubActions ? "/Compositor" : "",
+  images: {
+    unoptimized: true,
+  },
   typescript: {
     ignoreBuildErrors: true,
   },
